@@ -1,0 +1,12 @@
+[web]
+webserver ansible_host=32.197.124.132 ansible_user=ubuntu
+
+[db]
+dbserver ansible_host=54.167.255.81 ansible_user=ubuntu
+
+[local]
+localnode ansible_connection=local
+
+[datacenter:children]
+web
+db

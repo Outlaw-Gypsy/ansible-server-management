@@ -1,0 +1,66 @@
+# 1 - Ping every host in the inventory
+ansible -i inventory all -m ping
+
+# 2 - Using the command module, print the current date/time on every host in the web group: Log into every machine in the web group and execute the Linux date command.
+ansible -i inventory web -m command -a "date"
+
+# 3 - Using the shell module, find out how much free disk space is available on / for every host in datacenter.
+ansible -i inventory datacenter -m shell -a "df -h / | tail -1" 
+
+# 4. Using the setup module, print only the total memory fact (ansible_memtotal_mb) for every host
+ansible -i inventory all -m setup -a "filter=ansible_memtotal_mb"
+
+# 5. Using the package module, install htop on every host in datacenter with privilege escalation
+ansible -i inventory datacenter -m package -a "name=htop state=present" --become
+
+# Run the exact same command again
+# The second run reports changed=0 because Ansible is idempotent and htop is already installed
+ansible -i inventory datacenter -m package -a "name=htop state=present" --become
+
+# 6. Ensure SSH service is started and enabled on boot on every host
+ansible -i inventory datacenter -m service -a "name=ssh state=started enabled=yes" --become
+
+# 7. Create /tmp/hello.txt on every host in web using copy module content argument
+ansible -i inventory web -m copy -a "content='Hello from Ansible' dest=/tmp/hello.txt"
+
+# 8. Create /tmp/ansible_test directory with permissions 0755 on every host
+ansible -i inventory all -m file -a "path=/tmp/ansible_test state=directory mode=0755"
+
+# 9. Create deployer user on db host only with home directory and no login shell
+ansible -i inventory all -m user -a "name=deployer create_home=yes shell=/usr/sbin/nologin" --limit db --become
+
+# 10. Add '# Managed by Ansible' to /etc/motd if it does not already exist
+ansible -i inventory datacenter -m lineinfile -a "path=/etc/motd line='# Managed by Ansible' create=yes" --become
+
+# 11. Run a command against hosts matching a pattern instead of a group name
+ansible -i inventory "*server" -m ping
+
+# 12. Run ping with 10 parallel forks
+ansible -i inventory all -m ping -f 10
+
+# Forks controls how many hosts Ansible manages simultaneously.
+# Increasing forks improves speed when running commands against larger inventories.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,18 +1,18 @@
 # Part C – Diagnosis
 
-## 1. You run an ad-hoc command against a host and get **UNREACHABLE**. List three distinct possible root causes and how you'd check each one from the command line.
+## 1. You run an ad-hoc command against a host and get UNREACHABLE. List three distinct possible root causes and how you'd check each one from the command line.
 
 An **UNREACHABLE** error may occur because SSH connectivity is unavailable, such as when the EC2 instance is stopped, the public IP address is incorrect, or the Security Group blocks port 22. I would verify this by attempting an SSH connection to the host and checking the instance status and Security Group rules in AWS. It can also occur if the SSH username or private key is incorrect, which I would verify by manually connecting with the expected username and SSH key. Another possible cause is an incorrect inventory entry, which I would check by reviewing the inventory file or using `ansible-inventory` to verify the host configuration.
 
 ---
 
-## 2. What is the practical difference between the **command** module and the **shell** module? Give one example of something that only works in **shell**.
+## 2. What is the practical difference between the 'command' module and the **shell** module? Give one example of something that only works in 'shell'.
 
 The **command** module executes a command directly without invoking a shell, making it safer and more predictable. The **shell** module runs commands through a shell, allowing the use of shell features such as pipes, redirection, environment variables, and command chaining. For example, `df -h / | tail -1` only works with the **shell** module because the pipe (`|`) must be interpreted by the shell.
 
 ---
 
-## 3. Why does Ansible report **changed** vs **ok** for a task? What property of a well-written module makes this distinction possible?
+## 3. Why does Ansible report 'changed' vs 'ok' for a task? What property of a well-written module makes this distinction possible?
 
-Ansible reports **changed** when a task modifies the target system and **ok** when the desired state already exists and no changes are required. This behaviour is possible because well-written Ansible modules are **idempotent**, meaning they check the current state before making changes and only perform an action when necessary. Idempotency ensures that running the same task multiple times produces the same final state without unnecessary modifications.
+Ansible reports 'changed' when a task modifies the target system and 'ok' when the desired state already exists and no changes are required. This behaviour is possible because well-written Ansible modules are **idempotent**, meaning they check the current state before making changes and only perform an action when necessary. Idempotency ensures that running the same task multiple times produces the same final state without unnecessary modifications.
 

@@ -41,6 +41,9 @@ web
 db
 ```
 
+## Inventory Screenshot Evidence
+![Inventory](screenshots/inventory.png)
+
 The datacenter group allows me to target all production servers without including my local machine.
 
 The final structure is:
@@ -252,6 +255,10 @@ all
 
 to avoid accidentally running administrative tasks on the local machine.
 
+## Ping Screenshot Evidence
+![Task 1- Ping](screenshots/task-1.png)
+
+
 ---
 
 # 2. Display Current Date and Time on Web Servers
@@ -400,6 +407,8 @@ The choice between `command` and `shell` depends on the complexity of the comman
 
 A good Ansible practice is to use `command` whenever possible because it is safer and more predictable.
 
+## Date Screenshot Evidence
+![Task 2- Date](screenshots/task-2.png)
 
 ----
 
@@ -614,6 +623,9 @@ when the command requires shell features.
 
 However, because the shell module executes through a shell, it should only be used when necessary. For simple commands, `command` is safer because it avoids shell interpretation issues.
 
+## Shell Screenshot Evidence
+![Task 3- Shell](screenshots/task-3.png)
+
 ---
 
 # 4. Retrieve Total Memory Using the Setup Module
@@ -702,6 +714,8 @@ The `setup` module is used for gathering Ansible facts.
 
 The `filter` option helps retrieve only the specific information required instead of collecting all available facts.
 
+## Setup + Filter(ansible_memtotal_mb) Screenshot Evidence
+![Task 4- Setup](screenshots/task-4.png)
 
 ----
 
@@ -812,6 +826,8 @@ Ansible modules are designed to be idempotent.
 
 A task can be executed multiple times safely because Ansible only changes the system when the desired state has not already been achieved.
 
+## Install using Package Screenshot Evidence
+![Task 5- Package](screenshots/task-5.png)
 
 ----
 
@@ -954,6 +970,8 @@ datacenter
 
 to control exactly which hosts are affected.
 
+## Service modul with SSH running and enabled Screenshot Evidence
+![Task 6- Service](screenshots/task-6.png)
 
 ----
 
@@ -1066,6 +1084,8 @@ The `copy` module can either:
 
 The `content` argument is useful for creating small configuration files or adding simple text without creating temporary files on the Ansible controller.
 
+## Creating a file using Copy module Screenshot Evidence
+![Task 7- Copy](screenshots/task-7.png)
 
 ----
 
@@ -1175,6 +1195,8 @@ state=directory
 
 does not simply create a directory every time. Instead, Ansible checks the current state and only makes changes when necessary.
 
+## Creating a Directory using File Module Screenshot Evidence
+![Task 8- File](screenshots/task-8.png)
 
 ----
 
@@ -1356,6 +1378,8 @@ The `user` module can also be used to create service accounts by disabling inter
 shell=/usr/sbin/nologin
 ```
 
+## Deploy User Creation Screenshot Evidence
+![Task 9- User](screenshots/task-9.png)
 
 ----
 
@@ -1539,6 +1563,9 @@ The `lineinfile` module is useful for maintaining configuration files because it
 It ensures the required line exists without repeatedly adding duplicates.
 
 
+## Lineinfile Screenshot Evidence
+![Task 10- Lineinfilr](screenshots/task-10.png)
+
 ---
 
 # 11. Run Commands Using Host Patterns
@@ -1721,6 +1748,8 @@ matches hosts starting with `web`.
 
 matches hosts ending with `server`.
 
+## Host Pattern Screenshot Evidence
+![Task 11- Host Pattern](screenshots/task-11.png)
 
 ---
 
@@ -1810,6 +1839,8 @@ Forks control Ansible's level of parallelism.
 
 Higher fork values can improve execution speed in larger environments, but they should be configured carefully because each fork consumes system resources such as CPU, memory, and network connections.
 
+## Running Pings with Parallel Forks Screenshot Evidence
+![Task 12- Parallel Forks](screenshots/task-12.png)
 
 ----
 
